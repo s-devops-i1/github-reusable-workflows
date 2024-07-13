@@ -1,5 +1,5 @@
-name: Continuous Integration
-on: [push]
+name: Continuous Integration - Reusable
+on: [workflow_call]
 jobs:
   CI_Steps:
     runs-on: ubuntu-latest
