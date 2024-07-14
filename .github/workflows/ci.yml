@@ -6,8 +6,10 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+#      - run: echo OK
+#        name: code Build
       - run: echo OK
-        name: code Build
+        name: code Lint
       - run: echo OK
         name: echo Test
       - run: echo OK
