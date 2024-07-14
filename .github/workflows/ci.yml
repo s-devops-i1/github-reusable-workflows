@@ -2,7 +2,7 @@ name: Continuous Integration - Reusable
 on: [workflow_call]
 jobs:
   CI_Steps:
-    runs-on: self-hosted
+    runs-on: ci-runner-ec2
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
