@@ -10,12 +10,18 @@ jobs:
 #        name: code Build
       - run: echo OK
         name: code Lint
-      - run: echo OK
-        name: echo Test
-      - run: echo OK
-        name: code Review
+      - run: npm install
+        name: Install Nodejs modules
+      - run: echo npm run test:unit
+        name: code Unit Test
+      - run: echo npm run test:integration
+        name: code integration Test
       - run:  echo OK
+        name: code Review
+      - run: echo Ok
         name: Release Software
+
+
 
 
 
