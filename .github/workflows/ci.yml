@@ -18,7 +18,7 @@ jobs:
         id: vault-secrets
         uses: hashicorp/vault-action@v2
         with:
-            url: https://vault.shujathdevops.online:8200
+            url: http://vault.shujathdevops.online:8200
             token: ${{ secrets.vault_token }}
             tlsSkipVerify: true
             secrets: |
