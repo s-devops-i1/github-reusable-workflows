@@ -23,7 +23,7 @@ jobs:
             tlsSkipVerify: true
             secrets: |
               common/data/common sonarqube_user | sonarqube_user;
-              secret/data/ci/aws sonarqube_password | sonarqube_password ;
+              common/data/common sonarqube_password | sonarqube_password ;
 
       #      - run: echo OK
       #        name: code Build
