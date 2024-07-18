@@ -14,6 +14,17 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+      - name: Import Vault Secrets
+        id: vault-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+            url: https://vault.shujathdevops.online:8200
+            token: ${{ secrets.vault_token }}
+            tlsSkipVerify: true
+            secrets: |
+              common/data/common sonarqube_user | sonarqube_user;
+              secret/data/ci/aws sonarqube_password | sonarqube_password ;
+
       #      - run: echo OK
       #        name: code Build
       - run: echo OK
@@ -24,7 +35,7 @@ jobs:
         name: code Unit Test
       - run: echo npm run test:integration
         name: code integration Test
-      - run: echo /opt/sonar-scanner-6.1.0.4477-linux-x64/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujathdevops.online:9000 -Dsonar.projectKey=${{ inputs.project-name }}  -Dsonar.qualitygate.wait=true - ${{ secrets.vault_token}}
+      - run: echo /opt/sonar-scanner-6.1.0.4477-linux-x64/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujathdevops.online:9000 -Dsonar.projectKey=${{ inputs.project-name }}  -Dsonar.qualitygate.wait=true - ${{ steps.vault-secrets.outputs.sonarqube_password }} >/tmp/1
         name: Code Review
       - run: echo software Release
         name: Software Release
