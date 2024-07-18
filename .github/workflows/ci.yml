@@ -1,5 +1,10 @@
 name: Continuous Integration - Reusable
-on: [workflow_call]
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
@@ -18,7 +23,7 @@ jobs:
         name: code integration Test
       - run:  echo OK
         name: code Review
-      - run: echo Ok
+      - run: echo /opt/sonar-scanner-6.1.0.4477-linux-x64/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujathdevops.online:9000 -Dsonar.projectKey=${{ inputs.project-name }}  -Dsonar.qualitygate.wait=true
         name: Release Software
 
 
