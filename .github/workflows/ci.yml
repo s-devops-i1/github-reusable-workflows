@@ -5,6 +5,9 @@ on:
       project-name:
         required: true
         type: string
+      npm_install:
+        type: boolean
+        required: true
     secrets:
       vault_token:
         required: true
@@ -30,6 +33,7 @@ jobs:
 
       - run: npm install
         name: Install Nodejs modules
+        if:  ${{ inputs.npm_install }}
 
       - run: echo npm run test:unit
         name: code Unit Test
