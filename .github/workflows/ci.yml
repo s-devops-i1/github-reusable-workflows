@@ -25,18 +25,21 @@ jobs:
               common/data/common sonarqube_user | sonarqube_user;
               common/data/common sonaqube_password | sonaqube_password ;
 
-      #      - run: echo OK
-      #        name: code Build
       - run: echo OK
         name: code Lint
+
       - run: npm install
         name: Install Nodejs modules
+
       - run: echo npm run test:unit
         name: code Unit Test
+
       - run: echo npm run test:integration
         name: code integration Test
-      - run: echo /opt/sonar-scanner-6.1.0.4477-linux-x64/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujathdevops.online:9000 -Dsonar.projectKey=${{ inputs.project-name }}  -Dsonar.qualitygate.wait=true - ${{ steps.vault-secrets.outputs.sonaqube_password }} >/tmp/1
+
+      - run: /opt/sonar-scanner-6.1.0.4477-linux-x64/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujathdevops.online:9000 -Dsonar.projectKey=${{ inputs.project-name }}  -Dsonar.qualitygate.wait=true -Dsonar.login= ${{ steps.vault-secrets.outputs.sonarqube_user }} -Dsonar.password= ${{ steps.vault-secrets.outputs.sonaqube_password }}
         name: Code Review
+
       - run: echo software Release
         name: Software Release
 
